@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal Redesain Website GKJ Tangerang</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FDF6E3;
+            color: #1A2744;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #5D4037 0%, #3E2723 100%);
+            color: white;
+            margin-bottom: 40px;
+            border-radius: 0 0 30px 30px;
+        }
+        
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #D4A84B;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .header .date {
+            margin-top: 20px;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Sections */
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid #D4A84B;
+        }
+        
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: #5D4037;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section h3 {
+            color: #2E5D3C;
+            font-size: 1.1rem;
+            margin: 20px 0 10px;
+        }
+        
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .color-card {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .color-card span {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        /* Navigation */
+        .nav-preview {
+            background: #1A2744;
+            padding: 15px 30px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .nav-preview a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Phase Cards */
+        .phase {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .phase-number {
+            width: 40px;
+            height: 40px;
+            background: #D4A84B;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .phase h4 {
+            color: #5D4037;
+            font-size: 1.1rem;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding-left: 55px;
+        }
+        
+        .checklist li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+        
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #D4A84B;
+            border-radius: 4px;
+        }
+        
+        /* Reference Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: #5D4037;
+            color: white;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        /* Homepage Layout */
+        .layout-preview {
+            background: #1A2744;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            font-family: monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            white-space: pre;
+        }
+        
+        /* Javanese Elements */
+        .javanese-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .javanese-card {
+            background: linear-gradient(135deg, #FDF6E3, #fff);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #D4A84B;
+        }
+        
+        .javanese-card h4 {
+            color: #5D4037;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            .header {
+                border-radius: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .section {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+        
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #D4A84B;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        
+        .print-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="subtitle">Implementation Plan</div>
+        <h1>Proposal Redesain Website<br>GKJ Tangerang</h1>
+        <p class="date">Februari 2026</p>
+    </header>
+    
+    <div class="container">
+        <!-- Konsep Desain -->
+        <section class="section">
+            <h2>🎨 Konsep Desain: "Tradisi Bertemu Modernitas"</h2>
+            <p>Website gereja modern yang ramah pengguna dengan sentuhan budaya Jawa Kristen tradisional.</p>
+            
+            <h3>Palet Warna</h3>
+            <div class="color-grid">
+                <div class="color-card" style="background: #5D4037;">
+                    Coklat Batik
+                    <span>#5D4037</span>
+                </div>
+                <div class="color-card" style="background: #D4A84B;">
+                    Emas Jawa
+                    <span>#D4A84B</span>
+                </div>
+                <div class="color-card" style="background: #FDF6E3; color: #333;">
+                    Krem/Gading
+                    <span>#FDF6E3</span>
+                </div>
+                <div class="color-card" style="background: #2E5D3C;">
+                    Hijau Hutan
+                    <span>#2E5D3C</span>
+                </div>
+                <div class="color-card" style="background: #1A2744;">
+                    Biru Tua
+                    <span>#1A2744</span>
+                </div>
+            </div>
+            
+            <h3>Tipografi</h3>
+            <p><strong>Judul:</strong> Playfair Display (elegan, tradisional)<br>
+            <strong>Isi:</strong> Inter atau Nunito (modern, mudah dibaca)</p>
+        </section>
+        
+        <!-- Struktur Navigasi -->
+        <section class="section">
+            <h2>📱 Struktur Navigasi</h2>
+            <p>Navigasi sederhana dengan maksimal 5 item untuk kemudahan pengguna:</p>
+            <div class="nav-preview">
+                <a href="#">BERANDA</a>
+                <a href="#">TENTANG KAMI</a>
+                <a href="#">IBADAH</a>
+                <a href="#">PELAYANAN</a>
+                <a href="#">HUBUNGI</a>
+            </div>
+        </section>
+        
+        <!-- Layout Homepage -->
+        <section class="section">
+            <h2>🏠 Layout Homepage</h2>
+            <div class="layout-preview">┌─────────────────────────────────────────┐
+│  NAVBAR (sticky)                        │
+├─────────────────────────────────────────┤
+│  SLIDER HERO                            │
+│  - Foto gereja full-width               │
+├─────────────────────────────────────────┤
+│  AKSES CEPAT (ikon)                     │
+│  📅 Jadwal │ 📖 Renungan │ 🎥 Live      │
+├─────────────────────────────────────────┤
+│  SELAMAT DATANG                         │
+│  "Sugeng Rawuh" + pengenalan singkat    │
+├─────────────────────────────────────────┤
+│  JADWAL IBADAH (kartu)                  │
+├─────────────────────────────────────────┤
+│  KEGIATAN MENDATANG                     │
+├─────────────────────────────────────────┤
+│  RENUNGAN TERBARU                       │
+├─────────────────────────────────────────┤
+│  GALERI FOTO                            │
+├─────────────────────────────────────────┤
+│  PETA + INFO KONTAK                     │
+├─────────────────────────────────────────┤
+│  FOOTER                                 │
+└─────────────────────────────────────────┘</div>
+        </section>
+        
+        <!-- Fase Implementasi -->
+        <section class="section">
+            <h2>📋 Fase Implementasi</h2>
+            
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">1</div>
+                    <h4>FONDASI</h4>
+                </div>
+                <ul class="checklist">
+                    <li><span class="checkbox"></span> Update skema warna & tipografi</li>
+                    <li><span class="checkbox"></span> Redesain navbar (lebih simpel)</li>
+                    <li><span class="checkbox"></span> Redesain layout homepage</li>
+                    <li><span class="checkbox"></span> Tambah meta SEO</li>
+                </ul>
+            </div>
+            
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">2</div>
+                    <h4>HALAMAN KONTEN</h4>
+                </div>
+                <ul class="checklist">
+                    <li><span class="checkbox"></span> Redesain halaman Tentang</li>
+                    <li><span class="checkbox"></span> Buat section Ibadah dengan jadwal</li>
+                    <li><span class="checkbox"></span> Perbaiki halaman Pelayanan</li>
+                    <li><span class="checkbox"></span> Tambah halaman Kontak dengan peta</li>
+                </ul>
+            </div>
+            
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">3</div>
+                    <h4>FITUR TAMBAHAN</h4>
+                </div>
+                <ul class="checklist">
+                    <li><span class="checkbox"></span> Integrasi live streaming</li>
+                    <li><span class="checkbox"></span> Arsip khotbah dengan pencarian</li>
+                    <li><span class="checkbox"></span> Tombol WhatsApp mengambang</li>
+                    <li><span class="checkbox"></span> Integrasi persembahan online</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Elemen Budaya Jawa -->
+        <section class="section">
+            <h2>✨ Elemen Budaya Jawa</h2>
+            <div class="javanese-grid">
+                <div class="javanese-card">
+                    <h4>🎨 Visual</h4>
+                    <ul>
+                        <li>Motif batik sebagai tekstur</li>
+                        <li>Kawung/Parang pada border</li>
+                        <li>Siluet wayang sebagai dekorasi</li>
+                    </ul>
+                </div>
+                <div class="javanese-card">
+                    <h4>💬 Bahasa</h4>
+                    <ul>
+                        <li>"Sugeng Rawuh" - Selamat Datang</li>
+                        <li>"Salam Rahayu" - Salam Sejahtera</li>
+                        <li>Referensi kalender tradisional</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Referensi Website -->
+        <section class="section">
+            <h2>🌐 Referensi Website</h2>
+            <table>
+                <tr>
+                    <th>Website</th>
+                    <th>Kelebihan</th>
+                </tr>
+                <tr>
+                    <td>elevationchurch.org</td>
+                    <td>Hero bersih, navigasi simpel</td>
+                </tr>
+                <tr>
+                    <td>hillsong.com</td>
+                    <td>Desain minimal & elegan</td>
+                </tr>
+                <tr>
+                    <td>saddleback.com</td>
+                    <td>Warna hangat, fokus komunitas</td>
+                </tr>
+                <tr>
+                    <td>gkipi.or.id</td>
+                    <td>Konteks gereja Indonesia</td>
+                </tr>
+                <tr>
+                    <td>htb.org</td>
+                    <td>Gereja tradisional, desain modern</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- SEO -->
+        <section class="section">
+            <h2>🔍 Optimasi SEO</h2>
+            <div class="javanese-grid">
+                <div class="javanese-card">
+                    <h4>SEO Teknis</h4>
+                    <ul>
+                        <li>✅ HTML5 Semantik</li>
+                        <li>✅ Meta title & description</li>
+                        <li>✅ Open Graph tags</li>
+                        <li>✅ Sitemap.xml</li>
+                    </ul>
+                </div>
+                <div class="javanese-card">
+                    <h4>SEO Konten</h4>
+                    <ul>
+                        <li>✅ Kata kunci lokal</li>
+                        <li>✅ Renungan rutin</li>
+                        <li>✅ Alt text gambar</li>
+                        <li>✅ Loading cepat</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer class="footer">
+        <p>© 2026 GKJ Tangerang - Proposal Redesain Website</p>
+        <p>Dokumen ini dibuat pada Februari 2026</p>
+    </footer>
+    
+    <button class="print-btn no-print" onclick="window.print()">
+        🖨️ Cetak / Save PDF
+    </button>
+</body>
+</html>
