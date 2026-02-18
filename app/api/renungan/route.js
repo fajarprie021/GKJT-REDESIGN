@@ -7,17 +7,7 @@ export async function GET(request) {
         const { searchParams } = new URL(request.url);
         const limit = searchParams.get('limit');
 
-        let sql = `
-            SELECT 
-                renungan_id,
-                renungan_judul,
-                renungan_deskripsi,
-                renungan_tanggal,
-                DATE_FORMAT(renungan_tanggal, '%d/%m/%Y') AS tanggal,
-                renungan_author 
-            FROM tbl_renungan 
-            ORDER BY renungan_id DESC
-        `;
+        let sql = `SELECT * FROM tbl_renungan ORDER BY renungan_id DESC`;
 
         if (limit) {
             sql += ` LIMIT ${parseInt(limit)}`;
