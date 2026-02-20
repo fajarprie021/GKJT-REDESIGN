@@ -7,22 +7,7 @@ export async function GET(request) {
         const { searchParams } = new URL(request.url);
         const limit = searchParams.get('limit');
 
-        let sql = `
-            SELECT 
-                agenda_id,
-                agenda_nama,
-                agenda_deskripsi,
-                agenda_mulai,
-                agenda_selesai,
-                agenda_tempat,
-                agenda_waktu,
-                agenda_keterangan,
-                agenda_tanggal,
-                DATE_FORMAT(agenda_tanggal, '%d/%m/%Y') AS tanggal,
-                agenda_author 
-            FROM tbl_agenda 
-            ORDER BY agenda_id DESC
-        `;
+        let sql = `SELECT * FROM tbl_agenda ORDER BY agenda_id DESC`;
 
         if (limit) {
             sql += ` LIMIT ${parseInt(limit)}`;

@@ -2,75 +2,135 @@
 import Link from 'next/link';
 
 export default function Footer() {
-    const logoUrl = '/images/logo-white.png';
+    const logoUrl = '/images/logo.png';
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-[var(--background-dark)] text-white pt-20 pb-10 border-t border-gray-800">
-            <div className="max-w-7xl mx-auto px-6">
-                <div className="grid md:grid-cols-4 gap-12 mb-16">
+        <footer className="pt-20 pb-10 px-6 lg:px-20 text-white relative border-t-4"
+            style={{ backgroundColor: '#1A365D', borderTopColor: '#C5A059' }}>
+
+            {/* Batik Overlay */}
+            <div className="absolute inset-0 opacity-5 pointer-events-none"
+                style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/batik.png')" }} />
+
+            <div className="max-w-7xl mx-auto relative z-10">
+
+                {/* Main Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 border-b pb-16 mb-10"
+                    style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
+
                     {/* Brand Column */}
-                    <div className="col-span-1 md:col-span-1">
-                        <img src={logoUrl} alt="GKJ Tangerang" className="h-16 mb-6 opacity-90" />
-                        <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                            Gereja yang bertumbuh, terbuka, dan menjadi berkat bagi sesama. Melayani dengan hati yang tulus di tengah keberagaman Kota Tangerang.
+                    <div className="flex flex-col gap-6">
+                        <div className="flex items-center gap-4">
+                            <img src={logoUrl} alt="GKJ Tangerang"
+                                className="w-16 h-16 bg-white rounded-full p-2 shadow-xl object-contain" />
+                            <div className="flex flex-col">
+                                <span className="text-xl font-bold tracking-[0.3em] text-white"
+                                    style={{ fontFamily: 'Cinzel, serif' }}>
+                                    GKJ TANGERANG
+                                </span>
+                                <span className="text-[10px] font-bold tracking-[0.2em] uppercase"
+                                    style={{ color: '#C5A059' }}>
+                                    Gereja Kristen Jawa
+                                </span>
+                            </div>
+                        </div>
+                        <p className="text-base leading-relaxed italic pr-4"
+                            style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255,255,255,0.6)' }}>
+                            "Gereja yang bertumbuh di tengah budaya Jawa, merawat warisan iman, dan membangun masa depan yang luhur."
                         </p>
-                        <div className="flex gap-4">
-                            {/* Social Icons Placeholders */}
-                            <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[var(--primary)] transition-colors">FB</a>
-                            <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[var(--primary)] transition-colors">IG</a>
-                            <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[var(--primary)] transition-colors">YT</a>
+                        <div className="flex gap-3">
+                            <a href="#"
+                                className="w-11 h-11 border flex items-center justify-center transition-all rounded-full"
+                                style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'white' }}>
+                                <span className="material-symbols-outlined text-lg">language</span>
+                            </a>
+                            <a href="#"
+                                className="w-11 h-11 border flex items-center justify-center transition-all rounded-full"
+                                style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'white' }}>
+                                <span className="material-symbols-outlined text-lg">play_circle</span>
+                            </a>
                         </div>
                     </div>
 
-                    {/* Links Column 1 */}
-                    <div>
-                        <h4 className="text-lg font-bold mb-6 text-white">Tentang Kami</h4>
-                        <ul className="space-y-3 text-sm text-gray-400">
-                            <li><Link href="/tentang/sejarah" className="hover:text-[var(--accent)] transition-colors">Sejarah Gereja</Link></li>
-                            <li><Link href="/tentang/visi-misi" className="hover:text-[var(--accent)] transition-colors">Visi & Misi</Link></li>
-                            <li><Link href="/tentang/struktur-majelis" className="hover:text-[var(--accent)] transition-colors">Struktur Majelis</Link></li>
-                            <li><Link href="/contact" className="hover:text-[var(--accent)] transition-colors">Lokasi & Kontak</Link></li>
-                        </ul>
+                    {/* Tautan Langsung */}
+                    <div className="flex flex-col gap-8">
+                        <h4 className="text-xs font-bold tracking-[0.5em] uppercase flex items-center gap-3"
+                            style={{ fontFamily: 'Marcellus, serif', color: '#C5A059' }}>
+                            <span className="w-8 h-[1px]" style={{ backgroundColor: '#C5A059' }} />
+                            Tautan Langsung
+                        </h4>
+                        <nav className="flex flex-col gap-4 text-xs tracking-[0.2em] uppercase">
+                            {[
+                                { href: '/tentang/gkj-tangerang-saat-ini', label: 'Profil Gereja' },
+                                { href: '/agenda', label: 'Jadwal Ibadah' },
+                                { href: '/renungan', label: 'Renungan Harian' },
+                                { href: '/kegiatan', label: 'Berita Gereja' },
+                                { href: '/galeri', label: 'Galeri Foto' },
+                            ].map(({ href, label }) => (
+                                <Link key={href} href={href}
+                                    className="flex items-center gap-2 transition-colors"
+                                    style={{ color: 'rgba(255,255,255,0.5)' }}>
+                                    <span className="material-symbols-outlined text-sm">chevron_right</span>
+                                    {label}
+                                </Link>
+                            ))}
+                        </nav>
                     </div>
 
-                    {/* Links Column 2 */}
-                    <div>
-                        <h4 className="text-lg font-bold mb-6 text-white">Informasi</h4>
-                        <ul className="space-y-3 text-sm text-gray-400">
-                            <li><Link href="/agenda" className="hover:text-[var(--accent)] transition-colors">Jadwal Ibadah</Link></li>
-                            <li><Link href="/agenda" className="hover:text-[var(--accent)] transition-colors">Agenda Kegiatan</Link></li>
-                            <li><Link href="/renungan" className="hover:text-[var(--accent)] transition-colors">Renungan Harian</Link></li>
-                            <li><Link href="/download" className="hover:text-[var(--accent)] transition-colors">Unduh Dokumen</Link></li>
-                        </ul>
+                    {/* Pelayanan */}
+                    <div className="flex flex-col gap-8">
+                        <h4 className="text-xs font-bold tracking-[0.5em] uppercase flex items-center gap-3"
+                            style={{ fontFamily: 'Marcellus, serif', color: '#C5A059' }}>
+                            <span className="w-8 h-[1px]" style={{ backgroundColor: '#C5A059' }} />
+                            Pelayanan
+                        </h4>
+                        <div className="flex flex-col gap-4 text-xs tracking-[0.2em] uppercase"
+                            style={{ color: 'rgba(255,255,255,0.5)' }}>
+                            {['Pembinaan Iman', 'Layanan Diakonia', 'Sekolah Minggu', 'Paduan Suara', 'Komisi & Badan'].map(item => (
+                                <p key={item} className="flex items-center gap-2 cursor-pointer hover:text-white transition-colors">
+                                    <span className="material-symbols-outlined text-sm">fiber_manual_record</span>
+                                    {item}
+                                </p>
+                            ))}
+                        </div>
                     </div>
 
-                    {/* Contact Column */}
-                    <div>
-                        <h4 className="text-lg font-bold mb-6 text-white">Hubungi Kami</h4>
-                        <ul className="space-y-4 text-sm text-gray-400">
-                            <li className="flex gap-3">
-                                <span className="text-[var(--accent)]">📍</span>
-                                <span>Jl. Jend. Sudirman No.xx, Kota Tangerang, Banten</span>
-                            </li>
-                            <li className="flex gap-3">
-                                <span className="text-[var(--accent)]">📞</span>
+                    {/* Kontak */}
+                    <div className="flex flex-col gap-8">
+                        <h4 className="text-xs font-bold tracking-[0.5em] uppercase flex items-center gap-3"
+                            style={{ fontFamily: 'Marcellus, serif', color: '#C5A059' }}>
+                            <span className="w-8 h-[1px]" style={{ backgroundColor: '#C5A059' }} />
+                            Kontak
+                        </h4>
+                        <div className="flex flex-col gap-6 text-xs tracking-[0.15em] uppercase"
+                            style={{ color: 'rgba(255,255,255,0.5)' }}>
+                            <div className="flex items-start gap-4">
+                                <span className="material-symbols-outlined text-2xl flex-shrink-0"
+                                    style={{ color: '#C5A059' }}>location_on</span>
+                                <span className="leading-loose">Jl. Jend. Sudirman No.xx, Kota Tangerang, Banten</span>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <span className="material-symbols-outlined text-2xl"
+                                    style={{ color: '#C5A059' }}>call</span>
                                 <span>(021) 552-xxxx</span>
-                            </li>
-                            <li className="flex gap-3">
-                                <span className="text-[var(--accent)]">✉️</span>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <span className="material-symbols-outlined text-2xl"
+                                    style={{ color: '#C5A059' }}>mail</span>
                                 <span>sekretariat@gkjtangerang.org</span>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 {/* Copyright */}
-                <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-                    <p>&copy; {currentYear} Gereja Kristen Jawa Tangerang. All rights reserved.</p>
-                    <div className="flex gap-6">
-                        <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
-                        <Link href="/terms" className="hover:text-white">Terms of Service</Link>
+                <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] tracking-[0.5em] uppercase"
+                    style={{ color: 'rgba(255,255,255,0.3)' }}>
+                    <p>© {currentYear} GEREJA KRISTEN JAWA TANGERANG. SELURUH HAK CIPTA DILINDUNGI.</p>
+                    <div className="flex gap-10">
+                        <Link href="/privacy" className="hover:text-white transition-colors">KEBIJAKAN PRIVASI</Link>
+                        <Link href="/terms" className="hover:text-white transition-colors">SYARAT & KETENTUAN</Link>
                     </div>
                 </div>
             </div>

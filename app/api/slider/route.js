@@ -7,14 +7,10 @@ export async function GET(request) {
         const { searchParams } = new URL(request.url);
         const activeOnly = searchParams.get('active');
 
-        let sql = `
-            SELECT 
-                tbl_header.*
-            FROM tbl_header
-        `;
+        let sql = `SELECT * FROM tbl_header`;
 
         if (activeOnly === 'true') {
-            sql += ` WHERE status = 1`;
+            sql += ` WHERE status = 'Publish' OR status = 1`;
         }
 
         sql += ` ORDER BY id_header DESC`;

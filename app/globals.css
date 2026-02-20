@@ -1,134 +1,318 @@
 /* Typography - Google Fonts Import (must be first) */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 @import "tailwindcss";
 
-/* Dark Theme CSS Variables */
+/* ============================================
+   GKJT Design System - Based on Prototype
+   ============================================ */
 :root {
-  /* Dark Theme Backgrounds */
-  --background: #0a0a0a;
-  --background-dark: #000000;
-  --card-bg: #1a1a1a;
-  --card-bg-hover: #242424;
+  /* Primary Brand Colors */
+  --primary: #1A365D;
+  --primary-dark: #0A1E3A;
+  --primary-light: #3E5E91;
+
+  /* Accent Colors */
+  --accent-gold: #C5A059;
+  --accent-gold-light: #D4B577;
+
+  /* Background Colors */
+  --background: #F8FAFC;
+  --background-cream: #FDFBF7;
+  --background-white: #ffffff;
+  --card-bg: #ffffff;
+  --card-bg-hover: #f9f7f2;
 
   /* Text Colors */
-  --foreground: #ffffff;
-  --text-secondary: #a1a1a1;
-  --text-muted: #6b6b6b;
-
-  /* Accent Colors for Icon Navigation */
-  --accent-blue: #3b82f6;
-  --accent-purple: #a855f7;
-  --accent-green: #10b981;
-  --accent-orange: #f97316;
-  --accent-red: #ef4444;
-  --accent-yellow: #eab308;
-
-  /* Primary Brand Colors */
-  --primary: #3b82f6;
-  --primary-dark: #2563eb;
-  --primary-light: #60a5fa;
+  --foreground: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
 
   /* Border Colors */
-  --border-color: #2a2a2a;
-  --border-light: #3a3a3a;
+  --border-color: #E2E8F0;
+  --border-light: #CBD5E1;
+  --border-gold: #C5A059;
+
+  /* Batik Pattern */
+  --batik-pattern: url('https://www.transparenttextures.com/patterns/batik.png');
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-
+/* ============================================
+   Base Styles
+   ============================================ */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings with Serif Font */
+/* Headings with Display Font - NO color override, let each component control its own color */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cinzel', serif;
   font-weight: 700;
-  color: var(--foreground);
 }
 
-/* Dark Theme Card Styles */
+/* ============================================
+   Batik Texture
+   ============================================ */
+.batik-texture {
+  position: relative;
+}
+
+.batik-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--batik-pattern);
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.batik-blue-overlay {
+  background-image: var(--batik-pattern);
+  background-color: #1A365D;
+  opacity: 0.1;
+}
+
+/* ============================================
+   Corner Ornaments (Javanese Frame)
+   ============================================ */
+.carving-frame-javanese {
+  position: relative;
+  border: 2px solid var(--accent-gold);
+  padding: 4rem 3rem;
+  background-color: var(--primary);
+  box-shadow: 0 25px 50px -12px rgba(10, 30, 58, 0.5);
+}
+
+.corner-ornament {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--accent-gold);
+  z-index: 10;
+}
+
+.corner-tl {
+  top: -8px;
+  left: -8px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.corner-tr {
+  top: -8px;
+  right: -8px;
+  border-left: 0;
+  border-bottom: 0;
+}
+
+.corner-bl {
+  bottom: -8px;
+  left: -8px;
+  border-right: 0;
+  border-top: 0;
+}
+
+.corner-br {
+  bottom: -8px;
+  right: -8px;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* ============================================
+   Section Styles
+   ============================================ */
+.section-divider {
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  margin: 2rem 0;
+}
+
+.section-label {
+  font-family: 'Marcellus', serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   Card Styles
+   ============================================ */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  background: var(--card-bg-hover);
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-  border-color: var(--border-light);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(26, 54, 93, 0.12);
+  border-color: var(--accent-gold);
 }
 
-/* Section Title */
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--foreground);
-  position: relative;
-  display: inline-block;
-  font-family: 'Playfair Display', Georgia, serif;
+/* Gallery Card */
+.gallery-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.section-title::after {
-  content: '';
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(26, 54, 93, 0.15);
+  border-color: var(--accent-gold);
+}
+
+.gallery-card:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay {
   position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 60px;
-  height: 4px;
-  background: var(--accent-yellow);
-  border-radius: 2px;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.8) 0%, rgba(10, 30, 58, 0.6) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Button Primary */
+/* ============================================
+   Button Styles
+   ============================================ */
 .btn-primary {
   background: var(--primary);
   color: white;
-  padding: 12px 28px;
-  border-radius: 24px;
-  font-weight: 600;
+  padding: 14px 40px;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  border: 1px solid var(--accent-gold);
   transition: all 0.3s ease;
-  border: none;
   cursor: pointer;
 }
 
 .btn-primary:hover {
   background: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.4);
 }
 
-/* Smooth transitions */
-* {
-  transition: background-color 0.2s ease, color 0.2s ease;
+.btn-gold {
+  background: var(--accent-gold);
+  color: var(--primary);
+  padding: 14px 40px;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-/* Link styles for dark theme */
+.btn-gold:hover {
+  background: white;
+  color: var(--primary);
+}
+
+.btn-outline-gold {
+  background: transparent;
+  color: var(--accent-gold);
+  padding: 14px 40px;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  border: 2px solid var(--accent-gold);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-outline-gold:hover {
+  background: var(--accent-gold);
+  color: var(--primary);
+}
+
+/* ============================================
+   Material Symbols
+   ============================================ */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Links - NO global color override to avoid overriding button/link colors set per-component */
 a {
-  color: var(--primary-light);
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
-a:hover {
-  color: var(--foreground);
+/* Smooth Transitions - ONLY background, NOT color (color transition causes invisible text on load) */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* ============================================
+   Page Hero Banner
+   ============================================ */
+.page-hero {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--batik-pattern);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* ============================================
+   Heritage Typography
+   ============================================ */
+.font-display {
+  font-family: 'Cinzel', serif;
+}
+
+.font-heritage {
+  font-family: 'Marcellus', serif;
+}
+
+.font-serif-classic {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-sans {
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }

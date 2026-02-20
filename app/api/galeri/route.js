@@ -8,19 +8,12 @@ export async function GET(request) {
         const limit = searchParams.get('limit');
         const albumId = searchParams.get('album_id');
 
-        let sql = `
-            SELECT 
-                tbl_galeri.*,
-                DATE_FORMAT(galeri_tanggal, '%d/%m/%Y') AS tanggal,
-                album_nama 
-            FROM tbl_galeri 
-            JOIN tbl_album ON galeri_album_id = album_id
-        `;
+        let sql = `SELECT * FROM tbl_galeri`;
 
         const params = [];
 
         if (albumId) {
-            sql += ` WHERE galeri_album_id = ?`;
+            sql += ` WHERE galeri_album_id = ?`; // Keep this for now, assume standard naming
             params.push(albumId);
         }
 
