@@ -115,12 +115,12 @@ export default function PageBuilder() {
     const getIcon = (type) => SECTION_TYPES.find(t => t.type === type)?.icon || '📦';
 
     return (
-        <div className="min-h-screen bg-gray-900 text-white">
+        <div className="min-h-screen bg-[#1A2744] text-white">
             {/* Header */}
-            <div className="bg-gray-800 border-b border-gray-700 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+            <div className="bg-[#3E2723] border-b border-[#5D4037] px-6 py-4 flex justify-between items-center sticky top-0 z-50">
                 <div className="flex items-center gap-4">
-                    <h1 className="text-xl font-bold">Page Builder</h1>
-                    <span className="text-sm text-gray-400">{sections.length} sections</span>
+                    <h1 className="text-xl font-bold" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>Page Builder</h1>
+                    <span className="text-sm text-[#D4A84B]">{sections.length} sections</span>
                 </div>
                 <div className="flex items-center gap-4">
                     {saveMessage && (
@@ -128,13 +128,13 @@ export default function PageBuilder() {
                             {saveMessage}
                         </span>
                     )}
-                    <a href="/" target="_blank" className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm">
+                    <a href="/" target="_blank" className="px-4 py-2 bg-[#5D4037] hover:bg-[#8D6E63] rounded-lg text-sm transition-colors">
                         Preview Site ↗
                     </a>
                     <button
                         onClick={saveLayout}
                         disabled={isSaving}
-                        className="px-6 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 rounded-lg font-semibold"
+                        className="px-6 py-2 bg-[#D4A84B] hover:bg-[#C49840] disabled:bg-[#8D6E63] text-[#1A2744] rounded-lg font-semibold transition-colors"
                     >
                         {isSaving ? 'Saving...' : 'Save Layout'}
                     </button>
@@ -150,9 +150,9 @@ export default function PageBuilder() {
                             <div
                                 key={section.id}
                                 onClick={() => setSelectedId(section.id)}
-                                className={`bg-gray-800 rounded-lg border-2 p-4 cursor-pointer transition-all ${selectedId === section.id
-                                        ? 'border-blue-500 ring-2 ring-blue-500/30'
-                                        : 'border-gray-700 hover:border-gray-600'
+                                className={`bg-[#3E2723] rounded-lg border-2 p-4 cursor-pointer transition-all ${selectedId === section.id
+                                    ? 'border-[#D4A84B] ring-2 ring-[#D4A84B]/30'
+                                    : 'border-[#5D4037] hover:border-[#8D6E63]'
                                     }`}
                             >
                                 <div className="flex items-center justify-between">
@@ -160,7 +160,7 @@ export default function PageBuilder() {
                                         <span className="text-2xl">{getIcon(section.type)}</span>
                                         <div>
                                             <h3 className="font-semibold">{section.title}</h3>
-                                            <p className="text-sm text-gray-400">{section.type}</p>
+                                            <p className="text-sm text-[#D4A84B]/70">{section.type}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-1">
@@ -168,7 +168,7 @@ export default function PageBuilder() {
                                         <button
                                             onClick={(e) => { e.stopPropagation(); moveUp(index); }}
                                             disabled={index === 0}
-                                            className="p-2 hover:bg-gray-700 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+                                            className="p-2 hover:bg-[#5D4037] rounded disabled:opacity-30 disabled:cursor-not-allowed"
                                             title="Move up"
                                         >
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -179,7 +179,7 @@ export default function PageBuilder() {
                                         <button
                                             onClick={(e) => { e.stopPropagation(); moveDown(index); }}
                                             disabled={index === sections.length - 1}
-                                            className="p-2 hover:bg-gray-700 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+                                            className="p-2 hover:bg-[#5D4037] rounded disabled:opacity-30 disabled:cursor-not-allowed"
                                             title="Move down"
                                         >
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -205,7 +205,7 @@ export default function PageBuilder() {
                     {/* Add Section Button */}
                     <button
                         onClick={() => setShowAddPanel(true)}
-                        className="w-full mt-4 p-4 border-2 border-dashed border-gray-600 hover:border-blue-500 rounded-lg text-gray-400 hover:text-blue-400 transition-all flex items-center justify-center gap-2"
+                        className="w-full mt-4 p-4 border-2 border-dashed border-[#5D4037] hover:border-[#D4A84B] rounded-lg text-[#8D6E63] hover:text-[#D4A84B] transition-all flex items-center justify-center gap-2"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -215,15 +215,15 @@ export default function PageBuilder() {
                 </div>
 
                 {/* Settings Panel */}
-                <div className="w-80 bg-gray-800 border-l border-gray-700 min-h-[calc(100vh-73px)]">
+                <div className="w-80 bg-[#3E2723] border-l border-[#5D4037] min-h-[calc(100vh-73px)]">
                     {selectedSection ? (
                         <div>
-                            <div className="p-4 border-b border-gray-700 flex justify-between items-center">
+                            <div className="p-4 border-b border-[#5D4037] flex justify-between items-center">
                                 <div>
-                                    <h3 className="font-bold">{selectedSection.title}</h3>
-                                    <p className="text-sm text-gray-400">Edit settings</p>
+                                    <h3 className="font-bold" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{selectedSection.title}</h3>
+                                    <p className="text-sm text-[#D4A84B]/70">Edit settings</p>
                                 </div>
-                                <button onClick={() => setSelectedId(null)} className="p-2 hover:bg-gray-700 rounded">
+                                <button onClick={() => setSelectedId(null)} className="p-2 hover:bg-[#5D4037] rounded">
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                     </svg>
@@ -237,7 +237,7 @@ export default function PageBuilder() {
                             </div>
                         </div>
                     ) : (
-                        <div className="p-6 text-center text-gray-500">
+                        <div className="p-6 text-center text-[#8D6E63]">
                             <svg className="w-12 h-12 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
@@ -250,10 +250,10 @@ export default function PageBuilder() {
             {/* Add Section Modal */}
             {showAddPanel && (
                 <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50" onClick={() => setShowAddPanel(false)}>
-                    <div className="bg-gray-800 rounded-xl p-6 w-full max-w-2xl max-h-[80vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+                    <div className="bg-[#3E2723] rounded-xl p-6 w-full max-w-2xl max-h-[80vh] overflow-y-auto border-2 border-[#5D4037]" onClick={e => e.stopPropagation()}>
                         <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-xl font-bold">Add Section</h2>
-                            <button onClick={() => setShowAddPanel(false)} className="p-2 hover:bg-gray-700 rounded">
+                            <h2 className="text-xl font-bold" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>Add Section</h2>
+                            <button onClick={() => setShowAddPanel(false)} className="p-2 hover:bg-[#5D4037] rounded">
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
@@ -264,12 +264,12 @@ export default function PageBuilder() {
                                 <button
                                     key={sec.type}
                                     onClick={() => addSection(sec.type)}
-                                    className="p-4 bg-gray-700/50 hover:bg-gray-700 rounded-lg text-left transition-colors flex items-center gap-3"
+                                    className="p-4 bg-[#5D4037]/50 hover:bg-[#5D4037] rounded-lg text-left transition-colors flex items-center gap-3 border border-[#8D6E63]/30"
                                 >
                                     <span className="text-3xl">{sec.icon}</span>
                                     <div>
                                         <p className="font-semibold">{sec.name}</p>
-                                        <p className="text-sm text-gray-400">{sec.desc}</p>
+                                        <p className="text-sm text-[#D4A84B]/70">{sec.desc}</p>
                                     </div>
                                 </button>
                             ))}
@@ -300,30 +300,30 @@ function SectionEditor({ section, onUpdate }) {
             return (
                 <div className="space-y-4">
                     <div>
-                        <label className="block text-sm text-gray-300 mb-1">Subtitle</label>
+                        <label className="block text-sm text-[#D4A84B] mb-1">Subtitle</label>
                         <input
                             type="text"
                             value={config.subtitle || ''}
                             onChange={(e) => handleChange('subtitle', e.target.value)}
-                            className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
+                            className="w-full px-3 py-2 bg-[#1A2744] rounded border border-[#5D4037] focus:border-[#D4A84B] focus:outline-none transition-colors"
                         />
                     </div>
                     <div>
-                        <label className="block text-sm text-gray-300 mb-1">Title</label>
+                        <label className="block text-sm text-[#D4A84B] mb-1">Title</label>
                         <input
                             type="text"
                             value={config.title || ''}
                             onChange={(e) => handleChange('title', e.target.value)}
-                            className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
+                            className="w-full px-3 py-2 bg-[#1A2744] rounded border border-[#5D4037] focus:border-[#D4A84B] focus:outline-none transition-colors"
                         />
                     </div>
                     <div>
-                        <label className="block text-sm text-gray-300 mb-1">Description</label>
+                        <label className="block text-sm text-[#D4A84B] mb-1">Description</label>
                         <textarea
                             value={config.description || ''}
                             onChange={(e) => handleChange('description', e.target.value)}
                             rows={3}
-                            className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-blue-500 focus:outline-none resize-none"
+                            className="w-full px-3 py-2 bg-[#1A2744] rounded border border-[#5D4037] focus:border-[#D4A84B] focus:outline-none resize-none transition-colors"
                         />
                     </div>
                 </div>
@@ -332,16 +332,16 @@ function SectionEditor({ section, onUpdate }) {
         case 'hero':
             return (
                 <div className="space-y-4">
-                    <div className="text-sm text-gray-400 p-3 bg-gray-700/50 rounded">
+                    <div className="text-sm text-[#D4A84B]/70 p-3 bg-[#5D4037]/30 rounded border border-[#8D6E63]/30">
                         Hero slider images are managed from the Slider admin panel.
                     </div>
                     <div>
-                        <label className="block text-sm text-gray-300 mb-1">Slide Duration (ms)</label>
+                        <label className="block text-sm text-[#D4A84B] mb-1">Slide Duration (ms)</label>
                         <input
                             type="number"
                             value={config.duration || 5000}
                             onChange={(e) => handleChange('duration', parseInt(e.target.value))}
-                            className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
+                            className="w-full px-3 py-2 bg-[#1A2744] rounded border border-[#5D4037] focus:border-[#D4A84B] focus:outline-none transition-colors"
                         />
                     </div>
                 </div>
@@ -351,21 +351,21 @@ function SectionEditor({ section, onUpdate }) {
             return (
                 <div className="space-y-4">
                     <div>
-                        <label className="block text-sm text-gray-300 mb-1">Title</label>
+                        <label className="block text-sm text-[#D4A84B] mb-1">Title</label>
                         <input
                             type="text"
                             value={config.title || ''}
                             onChange={(e) => handleChange('title', e.target.value)}
-                            className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
+                            className="w-full px-3 py-2 bg-[#1A2744] rounded border border-[#5D4037] focus:border-[#D4A84B] focus:outline-none transition-colors"
                         />
                     </div>
                     <div>
-                        <label className="block text-sm text-gray-300 mb-1">HTML Content</label>
+                        <label className="block text-sm text-[#D4A84B] mb-1">HTML Content</label>
                         <textarea
                             value={config.content || ''}
                             onChange={(e) => handleChange('content', e.target.value)}
                             rows={6}
-                            className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-blue-500 focus:outline-none resize-none font-mono text-sm"
+                            className="w-full px-3 py-2 bg-[#1A2744] rounded border border-[#5D4037] focus:border-[#D4A84B] focus:outline-none resize-none font-mono text-sm transition-colors"
                             placeholder="<div>Your HTML here...</div>"
                         />
                     </div>
@@ -374,7 +374,7 @@ function SectionEditor({ section, onUpdate }) {
 
         default:
             return (
-                <div className="text-sm text-gray-400 p-3 bg-gray-700/50 rounded">
+                <div className="text-sm text-[#D4A84B]/70 p-3 bg-[#5D4037]/30 rounded border border-[#8D6E63]/30">
                     This section loads content from the database. Configure it from the respective admin panel.
                 </div>
             );
