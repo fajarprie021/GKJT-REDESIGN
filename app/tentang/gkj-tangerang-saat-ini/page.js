@@ -19,14 +19,14 @@ export default async function GKJTangerangSaatIniPage() {
     const pendeta = [
         {
             id: 1,
-            nama: "Pdt. Yuni Ginting Kristian, B.El",
-            foto: "/api/placeholder/400/500",
+            nama: "Pdt. Matias Fitriandi Hadiputra, B.Th, M.Psi",
+            foto: "/images/gkj-tangerang-saat-ini/pdt-matias.jpg",
             deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet."
         },
         {
             id: 2,
-            nama: "Pdt. Matias Fitriandi Hadiputra, B.Th, M.Psi",
-            foto: "/api/placeholder/400/500",
+            nama: "Pdt. Ivan Gilang Kristian S.Si",
+            foto: "/images/gkj-tangerang-saat-ini/pdt-ivan.jpg",
             deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet."
         }
     ];

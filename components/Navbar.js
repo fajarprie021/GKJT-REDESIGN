@@ -1,12 +1,33 @@
 'use client';
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
 
 const logoUrl = '/images/logo.png';
 
 export default function Navbar() {
     const pathname = usePathname();
+    const [menus, setMenus] = useState([]);
+    const [loading, setLoading] = useState(true);
+
     const isActive = (path) => pathname === path || pathname?.startsWith(path + '/');
+
+    useEffect(() => {
+        async function fetchMenu() {
+            try {
+                const res = await fetch('/api/menu?role=public');
+                const json = await res.json();
+                if (json.status === 'success') {
+                    setMenus(json.data);
+                }
+            } catch (error) {
+                console.error("Failed to fetch menu menu:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchMenu();
+    }, []);
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-[#C5A059]/20 shadow-xl"
@@ -21,57 +42,54 @@ export default function Navbar() {
                         className="w-14 h-14 object-contain bg-white rounded-full p-1.5 shadow-inner"
                     />
                     <div className="flex flex-col">
-                        <span className="font-display text-xl font-bold tracking-widest text-white leading-tight"
+                        <span className="font-display text-l font-bold tracking-widest text-white leading-tight"
                             style={{ fontFamily: 'Cinzel, serif' }}>
                             GKJ TANGERANG
-                        </span>
-                        <span className="text-[10px] tracking-[0.25em] font-bold"
-                            style={{ color: '#C5A059' }}>
-                            SINODE JAWA TENGAH
                         </span>
                     </div>
                 </Link>
 
                 {/* Desktop Nav */}
                 <nav className="hidden xl:flex items-center gap-8">
-                    <NavItem href="/" active={pathname === '/'} label="BERANDA" sub="Mlebet" />
+                    {loading ? (
+                        <div className="text-white/50 text-xs tracking-widest animate-pulse">Memuat Menu...</div>
+                    ) : (
+                        menus.map((menu) => {
+                            const hasChildren = menu.children && menu.children.length > 0;
+                            // Asumsikan sub title/caption bisa menggunakan property icon atau hardcoded sementara
+                            const subText = menu.icon || 'Menu';
 
-                    {/* Tentang Dropdown */}
-                    <div className="relative group h-16 flex items-center">
-                        <NavItemDropdown label="TENTANG" sub="Bab Kita" active={isActive('/tentang')} />
-                        <div className="absolute hidden group-hover:block top-full left-0 min-w-[220px] py-2 shadow-2xl border border-[#C5A059]/20"
-                            style={{ backgroundColor: '#0A1E3A' }}>
-                            <DropdownLink href="/tentang/gkj-tangerang-saat-ini">GKJ Tangerang Saat Ini</DropdownLink>
-                            <DropdownLink href="/tentang/sejarah">Sejarah Gereja</DropdownLink>
-                            <DropdownLink href="/tentang/struktur-majelis">Struktur Majelis</DropdownLink>
-                            <DropdownLink href="/tentang/visi-misi">Visi & Misi</DropdownLink>
-                        </div>
-                    </div>
+                            if (hasChildren) {
+                                return (
+                                    <div key={menu.id} className="relative group h-16 flex items-center">
+                                        <NavItemDropdown
+                                            label={menu.nama}
+                                            sub={subText}
+                                            active={isActive(menu.url)}
+                                        />
+                                        <div className="absolute hidden group-hover:block top-full left-0 min-w-[220px] py-2 shadow-2xl border border-[#C5A059]/20"
+                                            style={{ backgroundColor: '#0A1E3A' }}>
+                                            {menu.children.map(child => (
+                                                <DropdownLink key={child.id} href={child.url}>
+                                                    {child.nama}
+                                                </DropdownLink>
+                                            ))}
+                                        </div>
+                                    </div>
+                                );
+                            }
 
-                    {/* Pelayanan Dropdown */}
-                    <div className="relative group h-16 flex items-center">
-                        <NavItemDropdown label="PELAYANAN" sub="Kebaktian" active={isActive('/pelayanan')} />
-                        <div className="absolute hidden group-hover:block top-full left-0 min-w-[240px] py-2 shadow-2xl border border-[#C5A059]/20"
-                            style={{ backgroundColor: '#0A1E3A' }}>
-                            <DropdownLink href="/pelayanan/komisi">Komisi & Badan</DropdownLink>
-                            <DropdownLink href="/pelayanan/wilayah">Wilayah / Pepanthan</DropdownLink>
-                            <DropdownLink href="/pelayanan/baptis">Sakramen & Pernikahan</DropdownLink>
-                        </div>
-                    </div>
-
-                    {/* Kegiatan Dropdown */}
-                    <div className="relative group h-16 flex items-center">
-                        <NavItemDropdown label="KEGIATAN" sub="Pawartos" active={isActive('/kegiatan') || isActive('/agenda')} />
-                        <div className="absolute hidden group-hover:block top-full left-0 min-w-[200px] py-2 shadow-2xl border border-[#C5A059]/20"
-                            style={{ backgroundColor: '#0A1E3A' }}>
-                            <DropdownLink href="/agenda">Agenda Kegiatan</DropdownLink>
-                            <DropdownLink href="/kegiatan">Berita Gereja</DropdownLink>
-                        </div>
-                    </div>
-
-                    <NavItem href="/renungan" active={isActive('/renungan')} label="RENUNGAN" sub="Pepeling" />
-                    <NavItem href="/galeri" active={isActive('/galeri')} label="GALERI" sub="Gambar" />
-                    <NavItem href="/download" active={isActive('/download')} label="DOWNLOAD" sub="Unduh" />
+                            return (
+                                <NavItem
+                                    key={menu.id}
+                                    href={menu.url}
+                                    active={isActive(menu.url)}
+                                    label={menu.nama}
+                                    sub={subText}
+                                />
+                            );
+                        })
+                    )}
                 </nav>
 
                 {/* Right Side */}
@@ -102,7 +120,7 @@ export default function Navbar() {
 function NavItem({ href, label, sub, active }) {
     return (
         <Link href={href} className="flex flex-col items-center group nav-item">
-            <span className="text-[10px] font-bold tracking-widest transition-colors"
+            <span className="text-[10px] font-bold tracking-widest transition-colors uppercase"
                 style={{
                     fontFamily: 'Cinzel, serif',
                     color: active ? '#C5A059' : 'rgba(255,255,255,0.7)',
@@ -111,17 +129,19 @@ function NavItem({ href, label, sub, active }) {
                 }}>
                 {label}
             </span>
-            <span className="text-[8px] tracking-[0.2em] uppercase transition-colors"
-                style={{ color: 'rgba(255,255,255,0.35)' }}>
-                {sub}
-            </span>
+            {sub && sub !== 'Menu' && (
+                <span className="text-[8px] tracking-[0.2em] uppercase transition-colors uppercase"
+                    style={{ color: 'rgba(255,255,255,0.35)' }}>
+                    {sub}
+                </span>
+            )}
         </Link>
     );
 }
 
 function NavItemDropdown({ label, sub, active }) {
     return (
-        <div className="flex flex-col items-center cursor-pointer">
+        <div className="flex flex-col items-center cursor-pointer uppercase">
             <span className="text-[10px] font-bold tracking-widest transition-colors flex items-center gap-1"
                 style={{
                     fontFamily: 'Cinzel, serif',
@@ -134,17 +154,19 @@ function NavItemDropdown({ label, sub, active }) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
             </span>
-            <span className="text-[8px] tracking-[0.2em] uppercase"
-                style={{ color: 'rgba(255,255,255,0.35)' }}>
-                {sub}
-            </span>
+            {sub && sub !== 'Menu' && (
+                <span className="text-[8px] tracking-[0.2em] uppercase"
+                    style={{ color: 'rgba(255,255,255,0.35)' }}>
+                    {sub}
+                </span>
+            )}
         </div>
     );
 }
 
 function DropdownLink({ href, children }) {
     return (
-        <Link href={href}
+        <Link href={href || '#'}
             className="block px-5 py-2.5 text-[11px] font-bold tracking-widest uppercase transition-all hover:pl-7 hover:text-[#C5A059]"
             style={{
                 fontFamily: 'Cinzel, serif',

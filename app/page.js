@@ -1,130 +1,52 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import HeroSlider from "@/components/HeroSlider";
 
 const imageBaseUrl = '/api/images/assets/images';
 
 async function getData() {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
   try {
-    const [renunganRes, agendaRes, sliderRes] = await Promise.all([
+    const [renunganRes, agendaRes, sliderRes, heroRes] = await Promise.all([
       fetch(`${baseUrl}/api/renungan?limit=1`, { cache: 'no-store' }),
       fetch(`${baseUrl}/api/agenda?limit=2`, { cache: 'no-store' }),
-      fetch(`${baseUrl}/api/slider`, { cache: 'no-store' })
+      fetch(`${baseUrl}/api/slider`, { cache: 'no-store' }),
+      fetch(`${baseUrl}/api/hero-settings`, { cache: 'no-store' })
     ]);
     const renungan = await renunganRes.json();
     const agenda = await agendaRes.json();
     const slider = await sliderRes.json();
+    const heroSettings = await heroRes.json();
 
-    console.log('Renungan Data:', renungan.data?.[0]);
-    console.log('Agenda Data:', agenda.data?.[0]);
-    console.log('Slider Data:', slider.data?.[0]);
-
-    // Mapping Agenda (mungkin agenda_nama, bukan agenda_judul)
+    // Mapping Agenda
     const agendaData = (agenda.data || []).map(item => ({
       ...item,
-      agenda_judul: item.agenda_nama || item.agenda_judul, // Fallback
+      agenda_judul: item.agenda_nama || item.agenda_judul,
       tanggal: item.tanggal || new Date(item.agenda_tanggal).toLocaleDateString('id-ID')
     }));
 
     return {
       renungan: renungan.data || [],
       agenda: agendaData,
-      slider: slider.data || []
+      slider: slider.data || [],
+      heroSettings: heroSettings.data || {}
     };
   } catch (error) {
-    return { renungan: [], agenda: [], slider: [] };
+    return { renungan: [], agenda: [], slider: [], heroSettings: {} };
   }
 }
 
 export default async function Home() {
-  const { renungan, agenda, slider } = await getData();
+  const { renungan, agenda, slider, heroSettings } = await getData();
   const latestRenungan = renungan[0] || null;
-
-  // Hero background: use first slider image or fallback
-  const heroBg = slider[0]?.gambar
-    ? `${imageBaseUrl}/${slider[0].gambar}`
-    : 'https://lh3.googleusercontent.com/aida-public/AB6AXuB9P7_Qxe0xVwRUSd-ISFdXKCNUotv180ITVg4dujFWySTRXosG1vYKUYI4NqFA1e0TIQ1QDOty5d4T2weFtVYWUXMG-fT55voYuwqOkSIKKVkaBJo8fVUubu7DVcbMX47auKUVQuDlTbnYGwZaza9fHngZiV-vhU9ZkCqh-_10UNF4fVDtO8dbip9MvEQNdxKIaRr-USnq4gR_xGDEITBCdBfubMUByym1XUa3YXN_DaVqbgkcVAEi79nEQ4WtCyNWxKpPEBaoo3lG';
 
   return (
     <div className="min-h-screen batik-texture" style={{ backgroundColor: '#F8FAFC' }}>
       <Navbar />
 
-      {/* ===================== HERO SECTION ===================== */}
-      <section className="relative w-full flex items-center justify-center overflow-hidden" style={{ height: '850px' }}>
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center z-0"
-          style={{ backgroundImage: `url('${heroBg}')`, transform: 'scale(1.05)' }}
-        />
-        {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 z-[1]"
-          style={{ background: 'linear-gradient(135deg, rgba(26,54,93,0.92) 0%, rgba(10,30,58,0.7) 100%)' }} />
-        {/* Batik Overlay */}
-        <div className="absolute inset-0 z-[2] opacity-20"
-          style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/batik.png')", backgroundColor: '#1A365D' }} />
-
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
-          {/* Decorative Line */}
-          <div className="flex items-center justify-center gap-6 mb-10">
-            <div className="h-[2px] w-20 opacity-50" style={{ backgroundColor: '#C5A059' }} />
-            <span className="text-sm font-bold tracking-[0.5em] uppercase"
-              style={{ fontFamily: 'Marcellus, serif', color: '#C5A059' }}>
-              Selamat Datang — Sugeng Rawuh
-            </span>
-            <div className="h-[2px] w-20 opacity-50" style={{ backgroundColor: '#C5A059' }} />
-          </div>
-
-          {/* Main Heading */}
-          <h1 className="text-6xl md:text-8xl lg:text-9xl text-white leading-tight mb-10 drop-shadow-2xl"
-            style={{ fontFamily: 'Cinzel, serif', fontWeight: 700 }}>
-            Berbakti Dengan{' '}
-            <br />
-            <span className="italic" style={{ color: '#C5A059', fontFamily: 'Playfair Display, serif' }}>
-              Tulus dan Kasih
-            </span>
-          </h1>
-
-          {/* Tagline */}
-          <p className="text-xl md:text-3xl italic mb-16 max-w-3xl mx-auto leading-relaxed border-y py-8"
-            style={{
-              fontFamily: 'Playfair Display, serif',
-              color: 'rgba(255,255,255,0.8)',
-              borderColor: 'rgba(255,255,255,0.1)'
-            }}>
-            "Menjadi saksi Kristus yang menghidupi iman di tengah indahnya budaya Jawa Tengah."
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-8 justify-center">
-            <Link href="/agenda"
-              className="font-bold py-6 px-14 text-[11px] tracking-[0.4em] transition-all border shadow-lg text-white"
-              style={{
-                fontFamily: 'Cinzel, serif',
-                backgroundColor: '#1A365D',
-                borderColor: '#C5A059'
-              }}>
-              IBADAH LIVE
-            </Link>
-            <Link href="/agenda"
-              className="font-bold py-6 px-14 text-[11px] tracking-[0.4em] transition-all border-2 text-white"
-              style={{
-                fontFamily: 'Cinzel, serif',
-                backgroundColor: 'transparent',
-                borderColor: 'rgba(255,255,255,0.4)'
-              }}>
-              JADWAL KEGIATAN
-            </Link>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce"
-          style={{ color: 'rgba(197,160,89,0.6)' }}>
-          <span className="material-symbols-outlined text-4xl">expand_more</span>
-        </div>
-      </section>
+      {/* ===================== HERO SLIDER ===================== */}
+      <HeroSlider dbSlides={slider} heroSettings={heroSettings} />
 
       {/* ===================== JADWAL IBADAH ===================== */}
       <section className="py-32 px-6 lg:px-20 bg-white relative overflow-hidden" id="ibadah">

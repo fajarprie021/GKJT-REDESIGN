@@ -43,9 +43,10 @@ export default function AdminPage() {
             <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md">
                 <div className="text-center mb-8">
                     <img
-                        src="http://localhost/gkjtangerang/assets/images/mylogo.png"
-                        alt="Logo"
+                        src="/images/logo.png"
+                        alt="Logo GKJ Tangerang"
                         className="h-16 mx-auto mb-4"
+                        onError={(e) => { e.target.style.display = 'none'; }}
                     />
                     <h1 className="text-2xl font-bold text-gray-800">Administrator</h1>
                     <p className="text-gray-500 text-sm">GKJ Tangerang</p>
