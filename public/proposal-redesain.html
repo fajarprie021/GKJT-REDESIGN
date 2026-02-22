@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proposal Redesain Website GKJ Tangerang</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Inter', sans-serif;
-            background: #FDF6E3;
+            background: white;
             color: #1A2744;
             line-height: 1.6;
         }
-        
+
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-        
+
         /* Header */
         .header {
             text-align: center;
@@ -35,36 +36,36 @@
             margin-bottom: 40px;
             border-radius: 0 0 30px 30px;
         }
-        
+
         .header h1 {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             margin-bottom: 10px;
         }
-        
+
         .header .subtitle {
             color: #D4A84B;
             font-size: 1.1rem;
             letter-spacing: 3px;
             text-transform: uppercase;
         }
-        
+
         .header .date {
             margin-top: 20px;
             opacity: 0.8;
             font-size: 0.9rem;
         }
-        
+
         /* Sections */
         .section {
             background: white;
             padding: 30px;
             margin-bottom: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
             border-left: 5px solid #D4A84B;
         }
-        
+
         .section h2 {
             font-family: 'Playfair Display', serif;
             color: #5D4037;
@@ -74,13 +75,13 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .section h3 {
             color: #2E5D3C;
             font-size: 1.1rem;
             margin: 20px 0 10px;
         }
-        
+
         /* Color Palette */
         .color-grid {
             display: grid;
@@ -88,7 +89,7 @@
             gap: 15px;
             margin: 20px 0;
         }
-        
+
         .color-card {
             padding: 20px;
             border-radius: 10px;
@@ -96,14 +97,14 @@
             color: white;
             font-weight: 500;
         }
-        
+
         .color-card span {
             display: block;
             font-size: 0.8rem;
             opacity: 0.9;
             margin-top: 5px;
         }
-        
+
         /* Navigation */
         .nav-preview {
             background: #1A2744;
@@ -114,14 +115,14 @@
             gap: 30px;
             margin: 20px 0;
         }
-        
+
         .nav-preview a {
             color: white;
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
         }
-        
+
         /* Phase Cards */
         .phase {
             background: #f8f9fa;
@@ -129,14 +130,14 @@
             border-radius: 10px;
             margin: 15px 0;
         }
-        
+
         .phase-header {
             display: flex;
             align-items: center;
             gap: 15px;
             margin-bottom: 15px;
         }
-        
+
         .phase-number {
             width: 40px;
             height: 40px;
@@ -148,17 +149,17 @@
             justify-content: center;
             font-weight: bold;
         }
-        
+
         .phase h4 {
             color: #5D4037;
             font-size: 1.1rem;
         }
-        
+
         .checklist {
             list-style: none;
             padding-left: 55px;
         }
-        
+
         .checklist li {
             padding: 8px 0;
             border-bottom: 1px dashed #ddd;
@@ -166,40 +167,41 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .checklist li:last-child {
             border-bottom: none;
         }
-        
+
         .checkbox {
             width: 20px;
             height: 20px;
             border: 2px solid #D4A84B;
             border-radius: 4px;
         }
-        
+
         /* Reference Table */
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 15px 0;
         }
-        
-        th, td {
+
+        th,
+        td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #eee;
         }
-        
+
         th {
             background: #5D4037;
             color: white;
         }
-        
+
         tr:hover {
             background: #f5f5f5;
         }
-        
+
         /* Homepage Layout */
         .layout-preview {
             background: #1A2744;
@@ -211,7 +213,7 @@
             line-height: 1.8;
             white-space: pre;
         }
-        
+
         /* Javanese Elements */
         .javanese-grid {
             display: grid;
@@ -219,19 +221,19 @@
             gap: 15px;
             margin: 15px 0;
         }
-        
+
         .javanese-card {
             background: linear-gradient(135deg, #FDF6E3, #fff);
             padding: 20px;
             border-radius: 10px;
             border: 2px solid #D4A84B;
         }
-        
+
         .javanese-card h4 {
             color: #5D4037;
             margin-bottom: 10px;
         }
-        
+
         /* Footer */
         .footer {
             text-align: center;
@@ -239,27 +241,30 @@
             color: #666;
             font-size: 0.9rem;
         }
-        
+
         /* Print Styles */
         @media print {
             body {
                 background: white;
             }
+
             .header {
                 border-radius: 0;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
+
             .section {
                 break-inside: avoid;
                 box-shadow: none;
                 border: 1px solid #ddd;
             }
+
             .no-print {
                 display: none;
             }
         }
-        
+
         .print-btn {
             position: fixed;
             bottom: 30px;
@@ -272,28 +277,29 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             transition: transform 0.2s;
         }
-        
+
         .print-btn:hover {
             transform: scale(1.05);
         }
     </style>
 </head>
+
 <body>
     <header class="header">
         <div class="subtitle">Implementation Plan</div>
         <h1>Proposal Redesain Website<br>GKJ Tangerang</h1>
         <p class="date">Februari 2026</p>
     </header>
-    
+
     <div class="container">
         <!-- Konsep Desain -->
         <section class="section">
             <h2>🎨 Konsep Desain: "Tradisi Bertemu Modernitas"</h2>
             <p>Website gereja modern yang ramah pengguna dengan sentuhan budaya Jawa Kristen tradisional.</p>
-            
+
             <h3>Palet Warna</h3>
             <div class="color-grid">
                 <div class="color-card" style="background: #5D4037;">
@@ -317,12 +323,13 @@
                     <span>#1A2744</span>
                 </div>
             </div>
-            
+
             <h3>Tipografi</h3>
             <p><strong>Judul:</strong> Playfair Display (elegan, tradisional)<br>
-            <strong>Isi:</strong> Inter atau Nunito (modern, mudah dibaca)</p>
+                <strong>Isi:</strong> Inter atau Nunito (modern, mudah dibaca)
+            </p>
         </section>
-        
+
         <!-- Struktur Navigasi -->
         <section class="section">
             <h2>📱 Struktur Navigasi</h2>
@@ -335,40 +342,40 @@
                 <a href="#">HUBUNGI</a>
             </div>
         </section>
-        
+
         <!-- Layout Homepage -->
         <section class="section">
             <h2>🏠 Layout Homepage</h2>
             <div class="layout-preview">┌─────────────────────────────────────────┐
-│  NAVBAR (sticky)                        │
-├─────────────────────────────────────────┤
-│  SLIDER HERO                            │
-│  - Foto gereja full-width               │
-├─────────────────────────────────────────┤
-│  AKSES CEPAT (ikon)                     │
-│  📅 Jadwal │ 📖 Renungan │ 🎥 Live      │
-├─────────────────────────────────────────┤
-│  SELAMAT DATANG                         │
-│  "Sugeng Rawuh" + pengenalan singkat    │
-├─────────────────────────────────────────┤
-│  JADWAL IBADAH (kartu)                  │
-├─────────────────────────────────────────┤
-│  KEGIATAN MENDATANG                     │
-├─────────────────────────────────────────┤
-│  RENUNGAN TERBARU                       │
-├─────────────────────────────────────────┤
-│  GALERI FOTO                            │
-├─────────────────────────────────────────┤
-│  PETA + INFO KONTAK                     │
-├─────────────────────────────────────────┤
-│  FOOTER                                 │
-└─────────────────────────────────────────┘</div>
+                │ NAVBAR (sticky) │
+                ├─────────────────────────────────────────┤
+                │ SLIDER HERO │
+                │ - Foto gereja full-width │
+                ├─────────────────────────────────────────┤
+                │ AKSES CEPAT (ikon) │
+                │ 📅 Jadwal │ 📖 Renungan │ 🎥 Live │
+                ├─────────────────────────────────────────┤
+                │ SELAMAT DATANG │
+                │ "Sugeng Rawuh" + pengenalan singkat │
+                ├─────────────────────────────────────────┤
+                │ JADWAL IBADAH (kartu) │
+                ├─────────────────────────────────────────┤
+                │ KEGIATAN MENDATANG │
+                ├─────────────────────────────────────────┤
+                │ RENUNGAN TERBARU │
+                ├─────────────────────────────────────────┤
+                │ GALERI FOTO │
+                ├─────────────────────────────────────────┤
+                │ PETA + INFO KONTAK │
+                ├─────────────────────────────────────────┤
+                │ FOOTER │
+                └─────────────────────────────────────────┘</div>
         </section>
-        
+
         <!-- Fase Implementasi -->
         <section class="section">
             <h2>📋 Fase Implementasi</h2>
-            
+
             <div class="phase">
                 <div class="phase-header">
                     <div class="phase-number">1</div>
@@ -381,7 +388,7 @@
                     <li><span class="checkbox"></span> Tambah meta SEO</li>
                 </ul>
             </div>
-            
+
             <div class="phase">
                 <div class="phase-header">
                     <div class="phase-number">2</div>
@@ -394,7 +401,7 @@
                     <li><span class="checkbox"></span> Tambah halaman Kontak dengan peta</li>
                 </ul>
             </div>
-            
+
             <div class="phase">
                 <div class="phase-header">
                     <div class="phase-number">3</div>
@@ -408,7 +415,7 @@
                 </ul>
             </div>
         </section>
-        
+
         <!-- Elemen Budaya Jawa -->
         <section class="section">
             <h2>✨ Elemen Budaya Jawa</h2>
@@ -431,7 +438,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Referensi Website -->
         <section class="section">
             <h2>🌐 Referensi Website</h2>
@@ -462,7 +469,7 @@
                 </tr>
             </table>
         </section>
-        
+
         <!-- SEO -->
         <section class="section">
             <h2>🔍 Optimasi SEO</h2>
@@ -488,14 +495,15 @@
             </div>
         </section>
     </div>
-    
+
     <footer class="footer">
         <p>© 2026 GKJ Tangerang - Proposal Redesain Website</p>
         <p>Dokumen ini dibuat pada Februari 2026</p>
     </footer>
-    
+
     <button class="print-btn no-print" onclick="window.print()">
         🖨️ Cetak / Save PDF
     </button>
 </body>
+
 </html>
