@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - GKJ Tangerang</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #ffffff;
+            --background-dark: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+            --primary: #5D4037;
+            --primary-light: #8D6E63;
+            --primary-dark: #3E2723;
+            --accent: #D4A84B;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1A2744;
+            background: var(--background);
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 96px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #5D4037;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .btn-contact {
+            padding: 10px 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 999px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-contact:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: var(--card-bg);
+            min-width: 220px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 8px 0;
+            z-index: 100;
+            top: 100%;
+            left: 0;
+            margin-top: 4px;
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown-content:hover {
+            display: block;
+        }
+
+        .dropdown-link {
+            color: #4b5563;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .dropdown-link:hover {
+            background: rgba(93, 64, 55, 0.1);
+            color: var(--primary);
+            padding-left: 28px;
+        }
+
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dropdown-arrow {
+            font-size: 10px;
+            opacity: 0.6;
+        }
+
+        .section {
+            padding: 128px 24px 64px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 48px;
+            color: #5D4037;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(93, 64, 55, 0.1), rgba(212, 168, 75, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .gallery-item:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            background: var(--background-dark);
+            border-top: 1px solid #e5e7eb;
+            padding: 48px 24px;
+            text-align: center;
+            color: #6b7280;
+            margin-top: 64px;
+        }
+
+        /* ========== JAVANESE CULTURAL ELEMENTS ========== */
+        .batik-overlay {
+            position: relative;
+        }
+
+        .batik-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="batik" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="75" cy="25" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="25" cy="75" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="75" cy="75" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="50" cy="50" r="10" fill="none" stroke="%23D4A84B" stroke-width="0.5" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23batik)"/></svg>');
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .javanese-greeting {
+            text-align: center;
+            margin: 32px 0;
+            position: relative;
+        }
+
+        .javanese-text {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.75rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .javanese-translation {
+            font-size: 1rem;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .ornament-divider {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .ornament-divider::before,
+        .ornament-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+        }
+
+        .ornament-divider .ornament-center {
+            padding: 0 24px;
+            font-size: 20px;
+            color: var(--accent);
+        }
+
+        .footer-batik {
+            position: relative;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><defs><pattern id="footer-batik" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M30 10 L40 20 L30 30 L20 20 Z" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.1"/><circle cx="30" cy="30" r="8" fill="none" stroke="%23D4A84B" stroke-width="0.5" opacity="0.08"/></pattern></defs><rect width="60" height="60" fill="url(%23footer-batik)"/></svg>');
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo-text">GKJ TANGERANG</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li class="dropdown"><span class="nav-link dropdown-trigger" style="cursor:pointer;">Tentang Kita <span
+                            class="dropdown-arrow">▼</span></span>
+                    <div class="dropdown-content"><a href="tentang.html" class="dropdown-link">Sejarah Gereja</a><a
+                            href="tentang.html" class="dropdown-link">Struktur Majelis</a><a href="tentang.html"
+                            class="dropdown-link">Visi & Misi</a></div>
+                </li>
+                <li class="dropdown"><span class="nav-link dropdown-trigger" style="cursor:pointer;">Pelayanan <span
+                            class="dropdown-arrow">▼</span></span>
+                    <div class="dropdown-content"><a href="tentang.html" class="dropdown-link">Komisi & Badan</a><a
+                            href="tentang.html" class="dropdown-link">Wilayah / Pepanthan</a><a href="tentang.html"
+                            class="dropdown-link">Sakramen & Pernikahan</a></div>
+                </li>
+                <li class="dropdown"><span class="nav-link dropdown-trigger" style="cursor:pointer;">Info & Kegiatan
+                        <span class="dropdown-arrow">▼</span></span>
+                    <div class="dropdown-content"><a href="agenda.html" class="dropdown-link">Agenda Kegiatan</a><a
+                            href="agenda.html" class="dropdown-link">Berita Gereja</a></div>
+                </li>
+                <li><a href="renungan.html" class="nav-link">Renungan</a></li>
+                <li><a href="galeri.html" class="nav-link active">Galeri</a></li>
+                <li><a href="agenda.html" class="nav-link">Download</a></li>
+                <li><a href="contact.html" class="btn-contact">HUBUNGI</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section batik-overlay">
+        <div class="container" style="position: relative; z-index: 2;">
+            <!-- Javanese Greeting -->
+            <div class="javanese-greeting">
+                <h2 class="javanese-text">ꦒꦩ꧀ꦧꦂ​ꦏꦼꦒꦶꦪꦠꦤ꧀</h2>
+                <p class="javanese-translation">Gambar Kegiyatan - Galeri Foto</p>
+            </div>
+
+            <!-- Ornamental Divider -->
+            <div class="ornament-divider">
+                <span class="ornament-center">❦</span>
+            </div>
+
+            <h1 class="page-title">Galeri Foto</h1>
+            <div class="gallery-grid">
+                <div class="gallery-item">📸</div>
+                <div class="gallery-item">📸</div>
+                <div class="gallery-item">📸</div>
+                <div class="gallery-item">📸</div>
+                <div class="gallery-item">📸</div>
+                <div class="gallery-item">📸</div>
+                <div class="gallery-item">📸</div>
+                <div class="gallery-item">📸</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer footer-batik">
+        <!-- Javanese Greeting -->
+        <div class="javanese-greeting" style="margin-bottom: 32px;">
+            <h3 class="javanese-text" style="font-size: 1.5rem;">ꦱꦭꦩ꧀​ꦫꦲꦪꦸ</h3>
+            <p class="javanese-translation">Salam Rahayu - Damai Sejahtera</p>
+        </div>
+        <p>&copy; 2026 Gereja Kristen Jawa Tangerang. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renungan - GKJ Tangerang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /*  :root {
+            --background: #0a0e1a;
+            --card-bg: #131825;
+            --border-color: #1e293b;
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --accent: #fbbf24;
+        } */
+
+        :root {
+            --background: #ffffff;
+            --background-dark: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+            --primary: #5D4037;
+            --primary-light: #8D6E63;
+            --primary-dark: #3E2723;
+            --accent: #D4A84B;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1A2744;
+            background: var(--background);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 96px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #5D4037;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .btn-contact {
+            padding: 10px 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 999px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-contact:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Dropdown Menus */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: var(--card-bg);
+            min-width: 220px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 8px 0;
+            z-index: 100;
+            top: 100%;
+            left: 0;
+            margin-top: 4px;
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown-content:hover {
+            display: block;
+        }
+
+        .dropdown-link {
+            color: #4b5563;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .dropdown-link:hover {
+            background: rgba(93, 64, 55, 0.1);
+            color: var(--primary);
+            padding-left: 28px;
+        }
+
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dropdown-arrow {
+            font-size: 10px;
+            opacity: 0.6;
+        }
+
+        .section {
+            padding: 128px 24px 64px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 16px;
+            color: #5D4037;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #9ca3af;
+            margin-bottom: 48px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            background: var(--background-dark);
+            border-top: 1px solid #e5e7eb;
+            padding: 48px 24px;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        /* ========== JAVANESE CULTURAL ELEMENTS ========== */
+        .batik-overlay {
+            position: relative;
+        }
+
+        .batik-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="batik" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="75" cy="25" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="25" cy="75" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="75" cy="75" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="50" cy="50" r="10" fill="none" stroke="%23D4A84B" stroke-width="0.5" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23batik)"/></svg>');
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .javanese-greeting {
+            text-align: center;
+            margin: 48px 0;
+            position: relative;
+        }
+
+        .javanese-text {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .javanese-translation {
+            font-size: 1.1rem;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .footer-batik {
+            position: relative;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><defs><pattern id="footer-batik" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M30 10 L40 20 L30 30 L20 20 Z" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.1"/><circle cx="30" cy="30" r="8" fill="none" stroke="%23D4A84B" stroke-width="0.5" opacity="0.08"/></pattern></defs><rect width="60" height="60" fill="url(%23footer-batik)"/></svg>');
+        }
+
+        /* ========== JAVANESE CULTURAL ELEMENTS ========== */
+
+        /* Batik Pattern Overlay */
+        .batik-overlay {
+            position: relative;
+        }
+
+        .batik-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="batik" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="75" cy="25" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="25" cy="75" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="75" cy="75" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="50" cy="50" r="10" fill="none" stroke="%23D4A84B" stroke-width="0.5" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23batik)"/></svg>');
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Javanese Greeting Styles */
+        .javanese-greeting {
+            text-align: center;
+            margin: 32px 0;
+            position: relative;
+        }
+
+        .javanese-text {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.75rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .javanese-translation {
+            font-size: 1rem;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        /* Decorative Ornament Divider */
+        .ornament-divider {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .ornament-divider::before,
+        .ornament-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+        }
+
+        .ornament-divider .ornament-center {
+            padding: 0 24px;
+            font-size: 20px;
+            color: var(--accent);
+        }
+
+        /* Footer Batik Pattern */
+        .footer-batik {
+            position: relative;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><defs><pattern id="footer-batik" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M30 10 L40 20 L30 30 L20 20 Z" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.1"/><circle cx="30" cy="30" r="8" fill="none" stroke="%23D4A84B" stroke-width="0.5" opacity="0.08"/></pattern></defs><rect width="60" height="60" fill="url(%23footer-batik)"/></svg>');
+        }
+
+        /* Card with Batik Accent */
+        .card-batik-accent {
+            border-top: 3px solid transparent;
+            border-image: linear-gradient(90deg,
+                    var(--primary) 0%,
+                    var(--accent) 25%,
+                    var(--primary) 50%,
+                    var(--accent) 75%,
+                    var(--primary) 100%) 1;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo-text">GKJ TANGERANG</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+
+                <!-- Tentang Kita Dropdown -->
+                <li class="dropdown">
+                    <span class="nav-link dropdown-trigger" style="cursor:pointer;">
+                        Tentang Kita <span class="dropdown-arrow">▼</span>
+                    </span>
+                    <div class="dropdown-content">
+                        <a href="tentang.html" class="dropdown-link">Sejarah Gereja</a>
+                        <a href="tentang.html" class="dropdown-link">Struktur Majelis</a>
+                        <a href="tentang.html" class="dropdown-link">Visi & Misi</a>
+                    </div>
+                </li>
+
+                <!-- Pelayanan Dropdown -->
+                <li class="dropdown">
+                    <span class="nav-link dropdown-trigger" style="cursor:pointer;">
+                        Pelayanan <span class="dropdown-arrow">▼</span>
+                    </span>
+                    <div class="dropdown-content">
+                        <a href="tentang.html" class="dropdown-link">Komisi & Badan</a>
+                        <a href="tentang.html" class="dropdown-link">Wilayah / Pepanthan</a>
+                        <a href="tentang.html" class="dropdown-link">Sakramen & Pernikahan</a>
+                    </div>
+                </li>
+
+                <!-- Info & Kegiatan Dropdown -->
+                <li class="dropdown">
+                    <span class="nav-link dropdown-trigger" style="cursor:pointer;">
+                        Info & Kegiatan <span class="dropdown-arrow">▼</span>
+                    </span>
+                    <div class="dropdown-content">
+                        <a href="agenda.html" class="dropdown-link">Agenda Kegiatan</a>
+                        <a href="agenda.html" class="dropdown-link">Berita Gereja</a>
+                    </div>
+                </li>
+
+                <li><a href="renungan.html" class="nav-link active">Renungan</a></li>
+                <li><a href="galeri.html" class="nav-link">Galeri</a></li>
+                <li><a href="agenda.html" class="nav-link">Download</a></li>
+                <li><a href="contact.html" class="btn-contact">HUBUNGI</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section batik-overlay">
+        <div class="container" style="position: relative; z-index: 2;">
+            <!-- Javanese Greeting -->
+            <div class="javanese-greeting">
+                <h2 class="javanese-text">ꦥꦚꦸꦏ꧀​ꦥꦁꦮꦸꦭꦁ</h2>
+                <p class="javanese-translation">Panjuk Pangwulang - Renungan Firman</p>
+            </div>
+
+            <!-- Ornamental Divider -->
+            <div class="ornament-divider">
+                <span class="ornament-center">❦</span>
+            </div>
+
+            <h1 class="page-title">Renungan Harian</h1>
+            <p class="page-subtitle">Firman Tuhan untuk menguatkan iman setiap hari</p>
+
+            <div id="renunganList"></div>
+        </div>
+    </section>
+
+    <footer class="footer footer-batik">
+        <!-- Javanese Greeting -->
+        <div class="javanese-greeting" style="margin-bottom: 32px;">
+            <h3 class="javanese-text" style="font-size: 1.5rem;">ꦱꦭꦩ꧀​ꦫꦲꦪꦸ</h3>
+            <p class="javanese-translation">Salam Rahayu - Damai Sejahtera</p>
+        </div>
+        <p>&copy; 2026 Gereja Kristen Jawa Tangerang. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const renungan = [
+            { id: 1, judul: 'Kasih yang Tak Terhingga', deskripsi: 'Kasih Allah kepada kita begitu besar sehingga Ia memberikan Anak-Nya yang tunggal. Dalam setiap langkah hidup kita, kasih-Nya selalu menyertai dan menguatkan kita.', author: 'Pdt. Bambang Suryanto', tanggal: '06/02/2026' },
+            { id: 2, judul: 'Pengharapan di Tengah Badai', deskripsi: 'Ketika badai kehidupan melanda, kita memiliki pengharapan yang teguh di dalam Kristus. Dia adalah jangkar jiwa kita yang tidak akan goyah.', author: 'Pdt. Sarah Wijaya', tanggal: '05/02/2026' },
+            { id: 3, judul: 'Bersyukur dalam Segala Hal', deskripsi: 'Syukur adalah kunci untuk hidup yang penuh sukacita. Dalam segala keadaan, baik suka maupun duka, kita dipanggil untuk bersyukur kepada Tuhan.', author: 'Pdt. David Santoso', tanggal: '04/02/2026' },
+            { id: 4, judul: 'Kekuatan dalam Kelemahan', deskripsi: 'Paulus berkata bahwa ketika ia lemah, saat itulah ia kuat. Dalam kelemahan kita, kuasa Allah bekerja dengan sempurna.', author: 'Pdt. Ruth Manurung', tanggal: '03/02/2026' },
+            { id: 5, judul: 'Mengampuni Seperti Kristus', deskripsi: 'Pengampunan adalah inti dari ajaran Kristus. Seperti Dia mengampuni kita, demikian pula kita harus mengampuni sesama.', author: 'Pdt. Bambang Suryanto', tanggal: '02/02/2026' }
+        ];
+
+        const container = document.getElementById('renunganList');
+        renungan.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card card-batik-accent';
+            card.innerHTML = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                    <h2 style="font-size: 20px; font-weight: 600; color: var(--primary-light);">${item.judul}</h2>
+                    <span style="color: #6b7280; font-size: 14px; white-space: nowrap; margin-left: 16px;">${item.tanggal}</span>
+                </div>
+                <p style="color: #9ca3af; margin-bottom: 16px;">${item.deskripsi}</p>
+                <span style="font-size: 14px; color: #6b7280;">Oleh: ${item.author}</span>
+            `;
+            container.appendChild(card);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --background-dark: #f8f9fa;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --primary: #5D4037;
+  --primary-light: #8D6E63;
+  --primary-dark: #3E2723;
+  --accent: #D4A84B;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #1A2744;
+  background: var(--background);
+  line-height: 1.6;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Card Component */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+  border-color: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Title */
+.section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #5D4037;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Utility Classes */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary-light), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========== JAVANESE CULTURAL ELEMENTS ========== */
+
+/* Batik Pattern Overlay */
+.batik-overlay {
+  position: relative;
+}
+
+.batik-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="batik" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="75" cy="25" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="25" cy="75" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="75" cy="75" r="15" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.15"/><circle cx="50" cy="50" r="10" fill="none" stroke="%23D4A84B" stroke-width="0.5" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23batik)"/></svg>');
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Javanese Greeting Styles */
+.javanese-greeting {
+  text-align: center;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.javanese-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.javanese-translation {
+  font-size: 1rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Decorative Ornament Divider */
+.ornament-divider {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2.5rem 0;
+  position: relative;
+}
+
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+}
+
+.ornament-divider .ornament-center {
+  padding: 0 1.5rem;
+  font-size: 1.25rem;
+  color: var(--accent);
+}
+
+/* Footer Batik Pattern */
+.footer-batik {
+  position: relative;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><defs><pattern id="footer-batik" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M30 10 L40 20 L30 30 L20 20 Z" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.1"/><circle cx="30" cy="30" r="8" fill="none" stroke="%23D4A84B" stroke-width="0.5" opacity="0.08"/></pattern></defs><rect width="60" height="60" fill="url(%23footer-batik)"/></svg>');
+}
+
+/* Card with Batik Accent */
+.card-batik-accent {
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg,
+      var(--primary) 0%,
+      var(--accent) 25%,
+      var(--primary) 50%,
+      var(--accent) 75%,
+      var(--primary) 100%) 1;
+}
